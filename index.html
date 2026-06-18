@@ -459,8 +459,17 @@ function showResult(){
   html += `</table><div class="q-to-you"><strong>${f.name}タイプのあなたに質問</strong>${f.q}</div>`;
 
   document.getElementById('res-body').innerHTML = html;
-  document.getElementById('next-msg').innerHTML =
-    `『${f.name}タイプでした<br><br>質問への回答：（あなたの回答）<br><br>相手は恋人です！』`;
+document.getElementById('next-msg').innerHTML =
+  `【花タイプ診断】
+
+『${f.name}（花タイプ診断）ギフトを送信しました』
+
+質問への回答：（あなたの回答）
+
+相手は恋人です！
+
+花タイプ診断の結果を踏まえて
+今の私たちの状況も視ていただけますか？`;
 
   goTo('pg-result');
 }
