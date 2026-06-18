@@ -190,14 +190,6 @@ body{
   margin-bottom:6px;
 }
 
-.msgbox{
-  background:#fff;
-  border:1.5px dashed #c881ff;
-  border-radius:12px;
-  padding:14px;
-  font-size:13px;
-  line-height:1.8;
-}
 .chat-example{
   background:#fff;
   border-radius:18px;
@@ -211,25 +203,68 @@ body{
   font-weight:bold;
   margin-bottom:14px;
 }
-.gift-preview{
-  text-align:center;
+.chat-screen{
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 25%),
+    linear-gradient(180deg,#caa2ff 0%,#b991ea 100%);
+  border-radius:18px;
+  padding:18px 14px 0;
+  overflow:hidden;
   margin-bottom:16px;
 }
-.gift-preview img{
-  width:150px;
-  max-width:70%;
-  height:auto;
-  border-radius:18px;
-  box-shadow:0 6px 18px rgba(120,100,200,.18);
+.chat-gift{
+  text-align:right;
+  margin-bottom:8px;
+}
+.chat-gift img{
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  border-radius:50%;
+}
+.chat-time{
+  text-align:center;
+  color:#fff;
+  font-size:13px;
+  margin:6px 0 8px;
 }
 .chat-bubble{
-  background:#fff8fb;
-  border:1.5px solid rgba(200,129,255,.38);
-  border-radius:16px;
-  padding:14px;
-  color:#5a5a7a;
+  max-width:82%;
+  margin-left:auto;
+  background:#245aa8;
+  color:#fff;
+  border-radius:22px 22px 4px 22px;
+  padding:14px 16px;
+  font-size:14px;
+  line-height:1.8;
+  text-align:left;
+}
+.chat-input{
+  margin:18px -14px 0;
+  background:#fff;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.chat-input-text{
+  flex:1;
+  background:#f5f5f5;
+  color:#aaa;
+  border-radius:999px;
+  padding:12px;
   font-size:13px;
-  line-height:1.85;
+}
+.send-icon{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#8f95ff,#8b5cf6);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
 }
 .note{
   font-size:11px;
@@ -341,11 +376,24 @@ body{
     <div class="chat-example">
       <div class="chat-title">チャット送信例</div>
 
-      <div class="gift-preview">
-        <img id="gift-img" src="" alt="花タイプ診断ギフト">
-      </div>
+      <div class="chat-screen">
+        <div class="chat-gift">
+          <img id="gift-img" src="" alt="花タイプ診断ギフト">
+        </div>
 
-      <div class="chat-bubble" id="next-msg"></div>
+        <div class="chat-time">19:14</div>
+
+        <div class="chat-bubble" id="next-msg"></div>
+
+        <div class="chat-time">19:15</div>
+
+        <div class="chat-input">
+          <div style="font-size:24px;">🎁</div>
+          <div style="font-size:24px;">📷</div>
+          <div class="chat-input-text">相談内容を入力</div>
+          <div class="send-icon">➤</div>
+        </div>
+      </div>
 
       <p class="note">
         ※診断結果の花タイプギフトを送信後、上記の内容を添えていただくと鑑定がスムーズです。
@@ -381,15 +429,15 @@ let heartResult = '';
 let needTbHeart = false;
 
 const FLOWERS = {
-  AA:{img:'images/rose.png',gift:'images/gift_rose.png',name:'バラ',rows:[['タイプ','愛が深く、まっすぐで一度好きになると揺らぎにくいタイプ'],['魅力','深い愛情・一途さ・包容力']],q:'あの人はあなたからの愛の熱量をどう感じていると思いますか？'},
-  AB:{img:'images/gerbera.png',gift:'images/gift_gerbera.png',name:'ガーベラ',rows:[['タイプ','まじめで前向き、相手のペースも大事にしたいタイプ'],['魅力','誠実・健気・前向きさ']],q:'あの人はあなたからの優しさをどう受け取っていると思いますか？'},
-  AC:{img:'images/dahlia.png',gift:'images/gift_dahlia.png',name:'ダリア',rows:[['タイプ','愛は深いが距離感は大人。静かに深く愛するタイプ'],['魅力','芯の強さ・神秘性・深い絆を作る力']],q:'あの人にあなたの気持ちはちゃんと伝わっていると思いますか？'},
-  BA:{img:'images/lavender.png',gift:'images/gift_lavender.png',name:'ラベンダー',rows:[['タイプ','穏やかで優しく、恋人の心に寄り添う癒しタイプ'],['魅力','癒し・柔らかさ・安定感']],q:'あの人があなたに物足りないと思っていることは何だと思いますか？'},
-  BB:{img:'images/cosmos.png',gift:'images/gift_cosmos.png',name:'コスモス',rows:[['タイプ','バランス感覚が良く、自然体で恋を育てるタイプ'],['魅力','調和・優しさ・自然体']],q:'今あなたとの関係において、あの人の満足度はどれくらいだと思いますか？'},
-  BC:{img:'images/azami.png',gift:'images/gift_azami.png',name:'アザミ',rows:[['タイプ','本当は優しく愛が深いのに、自己防衛しながら恋をするタイプ'],['魅力','奥ゆかしさ・慎重な優しさ・唯一無二']],q:'あの人があなたに感じている心の距離感はどれくらいだと思いますか？'},
-  CA:{img:'images/sunflower.png',gift:'images/gift_sunflower.png',name:'ひまわり',rows:[['タイプ','明るくて素直。恋にポジティブでスピード感があるタイプ'],['魅力','明るさ・行動力・素直さ']],q:'あの人はあなたの素直なところをどう受け取っていると思いますか？'},
-  CB:{img:'images/tulip.png',gift:'images/gift_tulip.png',name:'チューリップ',rows:[['タイプ','親しみやすく、恋にも自然体で向き合うタイプ'],['魅力','可愛げ・素直さ・柔らかい明るさ']],q:'あの人にはあなたの本気度がどれくらい伝わっていると思いますか？'},
-  CC:{img:'images/sakura.png',gift:'images/gift_sakura.png',name:'さくら',rows:[['タイプ','繊細で、自分の世界を大切にしながら自由に恋するタイプ'],['魅力','可憐・独自性・ほどよい距離の美しさ']],q:'あの人はどれくらいあなたのことを理解していると思いますか？'}
+  AA:{img:'images/rose.png',gift:'images/rose.png',name:'バラ',rows:[['タイプ','愛が深く、まっすぐで一度好きになると揺らぎにくいタイプ'],['魅力','深い愛情・一途さ・包容力']],q:'あの人はあなたからの愛の熱量をどう感じていると思いますか？'},
+  AB:{img:'images/gerbera.png',gift:'images/gerbera.png',name:'ガーベラ',rows:[['タイプ','まじめで前向き、相手のペースも大事にしたいタイプ'],['魅力','誠実・健気・前向きさ']],q:'あの人はあなたからの優しさをどう受け取っていると思いますか？'},
+  AC:{img:'images/dahlia.png',gift:'images/dahlia.png',name:'ダリア',rows:[['タイプ','愛は深いが距離感は大人。静かに深く愛するタイプ'],['魅力','芯の強さ・神秘性・深い絆を作る力']],q:'あの人にあなたの気持ちはちゃんと伝わっていると思いますか？'},
+  BA:{img:'images/lavender.png',gift:'images/lavender.png',name:'ラベンダー',rows:[['タイプ','穏やかで優しく、恋人の心に寄り添う癒しタイプ'],['魅力','癒し・柔らかさ・安定感']],q:'あの人があなたに物足りないと思っていることは何だと思いますか？'},
+  BB:{img:'images/cosmos.png',gift:'images/cosmos.png',name:'コスモス',rows:[['タイプ','バランス感覚が良く、自然体で恋を育てるタイプ'],['魅力','調和・優しさ・自然体']],q:'今あなたとの関係において、あの人の満足度はどれくらいだと思いますか？'},
+  BC:{img:'images/azami.png',gift:'images/azami.png',name:'アザミ',rows:[['タイプ','本当は優しく愛が深いのに、自己防衛しながら恋をするタイプ'],['魅力','奥ゆかしさ・慎重な優しさ・唯一無二']],q:'あの人があなたに感じている心の距離感はどれくらいだと思いますか？'},
+  CA:{img:'images/sunflower.png',gift:'images/sunflower.png',name:'ひまわり',rows:[['タイプ','明るくて素直。恋にポジティブでスピード感があるタイプ'],['魅力','明るさ・行動力・素直さ']],q:'あの人はあなたの素直なところをどう受け取っていると思いますか？'},
+  CB:{img:'images/tulip.png',gift:'images/imagesgift_tulip.png',name:'チューリップ',rows:[['タイプ','親しみやすく、恋にも自然体で向き合うタイプ'],['魅力','可愛げ・素直さ・柔らかい明るさ']],q:'あの人にはあなたの本気度がどれくらい伝わっていると思いますか？'},
+  CC:{img:'images/sakura.png',gift:'images/sakura.png',name:'さくら',rows:[['タイプ','繊細で、自分の世界を大切にしながら自由に恋するタイプ'],['魅力','可憐・独自性・ほどよい距離の美しさ']],q:'あの人はどれくらいあなたのことを理解していると思いますか？'}
 };
 
 const wrap = document.getElementById('questions');
@@ -494,13 +542,11 @@ function showResult(){
   html += `</table><div class="q-to-you"><strong>${f.name}タイプのあなたに質問</strong>${f.q}</div>`;
 
   document.getElementById('res-body').innerHTML = html;
-
   document.getElementById('gift-img').src = f.gift;
 
   document.getElementById('next-msg').innerHTML =
-    `『${f.name}（花タイプ診断）ギフトを送信しました』<br><br>
-    質問への回答：（あなたの回答）<br><br>
-    相手は恋人です！`;
+    `質問への回答：〇〇です！<br>
+     相手は恋人です！`;
 
   goTo('pg-result');
 }
