@@ -429,16 +429,79 @@ let heartResult = '';
 let needTbHeart = false;
 
 const FLOWERS = {
-  AA:{img:'images/rose.png',gift:'images/rose.png',name:'バラ',rows:[['タイプ','愛が深く、まっすぐで一度好きになると揺らぎにくいタイプ'],['魅力','深い愛情・一途さ・包容力']],q:'あの人はあなたからの愛の熱量をどう感じていると思いますか？'},
-  AB:{img:'images/gerbera.png',gift:'images/gerbera.png',name:'ガーベラ',rows:[['タイプ','まじめで前向き、相手のペースも大事にしたいタイプ'],['魅力','誠実・健気・前向きさ']],q:'あの人はあなたからの優しさをどう受け取っていると思いますか？'},
-  AC:{img:'images/dahlia.png',gift:'images/dahlia.png',name:'ダリア',rows:[['タイプ','愛は深いが距離感は大人。静かに深く愛するタイプ'],['魅力','芯の強さ・神秘性・深い絆を作る力']],q:'あの人にあなたの気持ちはちゃんと伝わっていると思いますか？'},
-  BA:{img:'images/lavender.png',gift:'images/lavender.png',name:'ラベンダー',rows:[['タイプ','穏やかで優しく、恋人の心に寄り添う癒しタイプ'],['魅力','癒し・柔らかさ・安定感']],q:'あの人があなたに物足りないと思っていることは何だと思いますか？'},
-  BB:{img:'images/cosmos.png',gift:'images/cosmos.png',name:'コスモス',rows:[['タイプ','バランス感覚が良く、自然体で恋を育てるタイプ'],['魅力','調和・優しさ・自然体']],q:'今あなたとの関係において、あの人の満足度はどれくらいだと思いますか？'},
-  BC:{img:'images/azami.png',gift:'images/azami.png',name:'アザミ',rows:[['タイプ','本当は優しく愛が深いのに、自己防衛しながら恋をするタイプ'],['魅力','奥ゆかしさ・慎重な優しさ・唯一無二']],q:'あの人があなたに感じている心の距離感はどれくらいだと思いますか？'},
-  CA:{img:'images/sunflower.png',gift:'images/sunflower.png',name:'ひまわり',rows:[['タイプ','明るくて素直。恋にポジティブでスピード感があるタイプ'],['魅力','明るさ・行動力・素直さ']],q:'あの人はあなたの素直なところをどう受け取っていると思いますか？'},
-  CB:{img:'images/tulip.png',gift:'images/imagesgift_tulip.png',name:'チューリップ',rows:[['タイプ','親しみやすく、恋にも自然体で向き合うタイプ'],['魅力','可愛げ・素直さ・柔らかい明るさ']],q:'あの人にはあなたの本気度がどれくらい伝わっていると思いますか？'},
-  CC:{img:'images/sakura.png',gift:'images/sakura.png',name:'さくら',rows:[['タイプ','繊細で、自分の世界を大切にしながら自由に恋するタイプ'],['魅力','可憐・独自性・ほどよい距離の美しさ']],q:'あの人はどれくらいあなたのことを理解していると思いますか？'}
+AA:{
+img:'images/rose.png',
+gift:'images/gift_rose.png',
+name:'バラ',
+rows:[['タイプ','愛が深く、まっすぐで一度好きになると揺らぎにくいタイプ'],['魅力','深い愛情・一途さ・包容力']],
+q:'あの人はあなたからの愛の熱量をどう感じていると思いますか？'
+},
+
+AB:{
+img:'images/gerbera.png',
+gift:'images/gift_gerbera.png',
+name:'ガーベラ',
+rows:[['タイプ','まじめで前向き、相手のペースも大事にしたいタイプ'],['魅力','誠実・健気・前向きさ']],
+q:'あの人はあなたからの優しさをどう受け取っていると思いますか？'
+},
+
+AC:{
+img:'images/dahlia.png',
+gift:'images/gift_dahlia.png',
+name:'ダリア',
+rows:[['タイプ','愛は深いが距離感は大人。静かに深く愛するタイプ'],['魅力','芯の強さ・神秘性・深い絆を作る力']],
+q:'あの人にあなたの気持ちはちゃんと伝わっていると思いますか？'
+},
+
+BA:{
+img:'images/lavender.png',
+gift:'images/gift_lavender.png',
+name:'ラベンダー',
+rows:[['タイプ','穏やかで優しく、恋人の心に寄り添う癒しタイプ'],['魅力','癒し・柔らかさ・安定感']],
+q:'あの人があなたに物足りないと思っていることは何だと思いますか？'
+},
+
+BB:{
+img:'images/cosmos.png',
+gift:'images/gift_cosmos.png',
+name:'コスモス',
+rows:[['タイプ','バランス感覚が良く、自然体で恋を育てるタイプ'],['魅力','調和・優しさ・自然体']],
+q:'今あなたとの関係において、あの人の満足度はどれくらいだと思いますか？'
+},
+
+BC:{
+img:'images/azami.png',
+gift:'images/gift_azami.png',
+name:'アザミ',
+rows:[['タイプ','本当は優しく愛が深いのに、自己防衛しながら恋をするタイプ'],['魅力','奥ゆかしさ・慎重な優しさ・唯一無二']],
+q:'あの人があなたに感じている心の距離感はどれくらいだと思いますか？'
+},
+
+CA:{
+img:'images/sunflower.png',
+gift:'images/gift_sunflower.png',
+name:'ひまわり',
+rows:[['タイプ','明るくて素直。恋にポジティブでスピード感があるタイプ'],['魅力','明るさ・行動力・素直さ']],
+q:'あの人はあなたの素直なところをどう受け取っていると思いますか？'
+},
+
+CB:{
+img:'images/tulip.png',
+gift:'images/gift_tulip.png',
+name:'チューリップ',
+rows:[['タイプ','親しみやすく、恋にも自然体で向き合うタイプ'],['魅力','可愛げ・素直さ・柔らかい明るさ']],
+q:'あの人にはあなたの本気度がどれくらい伝わっていると思いますか？'
+},
+
+CC:{
+img:'images/sakura.png',
+gift:'images/gift_sakura.png',
+name:'さくら',
+rows:[['タイプ','繊細で、自分の世界を大切にしながら自由に恋するタイプ'],['魅力','可憐・独自性・ほどよい距離の美しさ']],
+q:'あの人はどれくらいあなたのことを理解していると思いますか？'
+}
 };
+
 
 const wrap = document.getElementById('questions');
 questions.forEach((q,i)=>{
