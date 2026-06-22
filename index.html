@@ -403,7 +403,7 @@ text-align:left;
 ① 診断結果の花タイプギフトを送信<br>
 ② 質問への回答を送信<br>
 ③ お相手との関係を送信<br>
-④ 相談内容を送信
+④ 相談内容(任意)を送信
 </div>
 
 <div style="
@@ -656,10 +656,9 @@ function showResult(){
   document.getElementById('res-body').innerHTML = html;
   document.getElementById('gift-img').src = f.gift;
 
-  document.getElementById('next-msg').innerHTML =
-    `質問への回答：〇〇です！<br>
-     相手は恋人です！<br>
-     彼の気持ちをみてほしいです。`;
+document.getElementById('next-msg').innerHTML =
+  `質問への回答：〇〇です！<br>
+   相手は恋人です！`;
 
   goTo('pg-result');
 }
