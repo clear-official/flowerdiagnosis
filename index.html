@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4R3C0K1XS1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4R3C0K1XS1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恋愛「花」タイプ診断</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  min-height:100vh;
+  font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',Arial,sans-serif;
+  color:#4a4a6a;
+  background:linear-gradient(-76deg,#8f95ff 0%,#c881ff 50%,#ff89bf 100%);
+  padding:24px 14px 52px;
+}
+
+.page{display:none;max-width:640px;margin:0 auto}
+.page.active{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.frame{
+  background:linear-gradient(-76deg,#8f95ff,#c881ff,#ff89bf);
+  border-radius:24px;
+  padding:4px;
+  box-shadow:0 12px 40px rgba(120,100,200,.35);
+}
+.inner{
+  background:#fff8f2;
+  border-radius:21px;
+  padding:28px 18px 32px;
+}
+
+.hd{text-align:center;margin-bottom:22px}
+.badge{
+  display:inline-block;
+  padding:5px 18px;
+  border-radius:999px;
+  background:#fff;
+  color:#7a6cff;
+  font-weight:bold;
+  font-size:12px;
+  margin-bottom:12px;
+}
+.ttl{
+  color:#6b63ff;
+  font-size:15px;
+  font-weight:bold;
+  line-height:1.7;
+}
+
+.q-block{
+  background:#fff;
+  border-radius:15px;
+  padding:16px 14px;
+  margin-bottom:13px;
+  box-shadow:0 3px 12px rgba(120,120,180,.10);
+}
+.q-num{
+  display:inline-block;
+  background:linear-gradient(-76deg,#8f95ff,#c881ff);
+  color:#fff;
+  border-radius:999px;
+  padding:3px 11px;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:9px;
+}
+.q-text{
+  font-size:13px;
+  font-weight:bold;
+  color:#5a5a7a;
+  margin-bottom:12px;
+  line-height:1.7;
+}
+.opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:11px;
+  border:1.5px solid rgba(200,129,255,.35);
+  background:#fff;
+  cursor:pointer;
+  font-size:13px;
+  color:#5a5a7a;
+  margin-bottom:8px;
+}
+.opt.selected{
+  border-color:#c881ff;
+  background:linear-gradient(135deg,rgba(200,129,255,.12),rgba(255,137,191,.09));
+  color:#6a63ff;
+  font-weight:bold;
+}
+.dot{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:2px solid #c881ff;
+  flex-shrink:0;
+  position:relative;
+}
+.opt.selected .dot:after{
+  content:"";
+  position:absolute;
+  inset:3px;
+  background:#c881ff;
+  border-radius:50%;
+}
+
+.btn{
+  display:block;
+  width:100%;
+  max-width:280px;
+  margin:20px auto 0;
+  padding:14px 20px;
+  border-radius:999px;
+  background:linear-gradient(-76deg,#8f95ff,#c881ff,#ff89bf);
+  color:#fff;
+  font-weight:bold;
+  font-size:14px;
+  text-align:center;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 7px 20px rgba(150,120,255,.35),inset 0 2px 4px rgba(255,255,255,.5);
+}
+.err{
+  display:none;
+  text-align:center;
+  color:#ff6b9d;
+  font-size:12px;
+  margin-top:10px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:20px 16px;
+  box-shadow:0 4px 16px rgba(120,120,180,.13);
+}
+.flower-img{
+  display:block;
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:50%;
+  margin:10px auto;
+  box-shadow:0 4px 16px rgba(120,100,200,.2);
+}
+.flower-name{
+  text-align:center;
+  font-size:28px;
+  font-weight:bold;
+  color:#6b63ff;
+  margin-bottom:14px;
+}
+.rtable{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+.rtable tr{border-bottom:1px dashed rgba(200,129,255,.25)}
+.rtable td{
+  padding:9px 4px;
+  vertical-align:top;
+  color:#5a5a7a;
+}
+.rtable td:first-child{
+  color:#c881ff;
+  font-weight:bold;
+  width:82px;
+  white-space:nowrap;
+}
+.q-to-you{
+  background:linear-gradient(135deg,rgba(255,137,191,.1),rgba(200,129,255,.1));
+  border:1.5px solid rgba(200,129,255,.4);
+  border-radius:12px;
+  padding:14px;
+  margin-top:14px;
+  font-size:13px;
+}
+.q-to-you strong{
+  display:block;
+  color:#7a6cff;
+  margin-bottom:6px;
+}
+
+
+.send-guide{
+  background:linear-gradient(135deg,#fff7fb,#f8f4ff);
+  border:2px solid #e5d0ff;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:18px;
+  text-align:center;
+}
+.send-guide-title{
+  font-size:15px;
+  font-weight:bold;
+  color:#7a6cff;
+  margin-bottom:10px;
+}
+.send-guide-list{
+  font-size:13px;
+  line-height:1.9;
+  color:#5a5a7a;
+  text-align:left;
+}
+.send-guide-list div{
+  background:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+  margin-bottom:8px;
+  box-shadow:0 3px 10px rgba(120,120,180,.08);
+}
+.send-guide-list strong{
+  color:#7a6cff;
+}
+.send-guide-question{
+  margin-top:6px;
+  padding:10px 12px;
+  background:#fff8fb;
+  border:1.5px dashed rgba(200,129,255,.55);
+  border-radius:12px;
+  color:#5a5a7a;
+  font-size:12px;
+  line-height:1.75;
+}
+.back-btn{
+  display:block;
+  width:100%;
+  max-width:260px;
+  margin:12px auto 0;
+  padding:12px 18px;
+  border-radius:999px;
+  background:#fff;
+  color:#7a6cff;
+  font-weight:bold;
+  font-size:13px;
+  text-align:center;
+  border:1.5px solid rgba(200,129,255,.45);
+  cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 4px 14px rgba(120,120,180,.12);
+}
+
+.chat-example{
+  background:#fff;
+  border-radius:18px;
+  padding:18px 14px;
+  box-shadow:0 4px 16px rgba(120,120,180,.13);
+}
+.chat-title{
+  text-align:center;
+  color:#7a6cff;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:14px;
+}
+.chat-screen{
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 25%),
+    linear-gradient(180deg,#caa2ff 0%,#b991ea 100%);
+  border-radius:18px;
+  padding:18px 14px 0;
+  overflow:hidden;
+  margin-bottom:16px;
+}
+.chat-gift{
+  text-align:right;
+  margin-bottom:8px;
+}
+.chat-gift img{
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  border-radius:50%;
+}
+.chat-time{
+  width:100%;
+  text-align:right;
+  color:#fff;
+  font-size:12px;
+  margin:8px 24px 8px 0;
+  box-sizing:border-box;
+}
+.chat-bubble{
+  max-width:82%;
+  margin-left:auto;
+  background:#245aa8;
+  color:#fff;
+  border-radius:22px 22px 4px 22px;
+  padding:14px 16px;
+  font-size:14px;
+  line-height:1.8;
+  text-align:left;
+}
+.chat-input{
+  margin:18px -14px 0;
+  background:#fff;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.chat-input-text{
+  flex:1;
+  background:#f5f5f5;
+  color:#aaa;
+  border-radius:999px;
+  padding:12px;
+  font-size:13px;
+}
+.send-icon{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#8f95ff,#8b5cf6);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+.note{
+  font-size:11px;
+  color:#888;
+  margin-top:10px;
+  line-height:1.7;
+}
+.prof{
+  margin-top:20px;
+  text-align:center;
+}
+.prof img{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #fff;
+  box-shadow:0 0 0 2px rgba(255,137,191,.45);
+}
+.prof-name{
+  margin-top:8px;
+  font-weight:bold;
+  font-size:13px;
+  color:#6a63ff;
+}
+.footer{
+  text-align:center;
+  font-size:11px;
+  color:rgba(255,255,255,.65);
+  margin-top:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page active" id="pg-quiz">
+  <div class="frame"><div class="inner">
+    <div class="hd">
+      <div class="badge">🌸 恋愛「花」タイプ診断</div>
+      <div class="ttl">以下の6つの質問に<br>A / B / C から答えてください</div>
+    </div>
+
+    <div id="questions"></div>
+
+    <div class="err" id="quiz-err">すべての質問に答えてください</div>
+    <button class="btn" onclick="submitQuiz()">結果を確認する ✨</button>
+  </div></div>
+</div>
+
+<div class="page" id="pg-tb-star">
+  <div class="frame"><div class="inner">
+    <div class="hd">
+      <div class="badge">⭐ 追加の質問</div>
+      <div class="ttl">もう一問だけ答えてください</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">「あなたの恋の始まり方」に一番近いのはどれ？</div>
+      <div class="opt" onclick="pick(this,'tb_star','A')"><div class="dot"></div>A：一目惚れや、急速に気持ちが盛り上がる</div>
+      <div class="opt" onclick="pick(this,'tb_star','B')"><div class="dot"></div>B：自然な流れで少しずつ好きになる</div>
+      <div class="opt" onclick="pick(this,'tb_star','C')"><div class="dot"></div>C：ふとしたきっかけで恋が芽生える</div>
+    </div>
+
+    <div class="err" id="tb-star-err">答えを選んでください</div>
+    <button class="btn" onclick="submitTbStar()">次へ</button>
+  </div></div>
+</div>
+
+<div class="page" id="pg-tb-heart">
+  <div class="frame"><div class="inner">
+    <div class="hd">
+      <div class="badge">💗 追加の質問</div>
+      <div class="ttl">もう一問だけ答えてください</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">恋人との理想の時間の過ごし方は？</div>
+      <div class="opt" onclick="pick(this,'tb_heart','A')"><div class="dot"></div>A：できるだけ一緒にいたい</div>
+      <div class="opt" onclick="pick(this,'tb_heart','B')"><div class="dot"></div>B：一緒の日も別々の日も自然に選びたい</div>
+      <div class="opt" onclick="pick(this,'tb_heart','C')"><div class="dot"></div>C：会う時は濃く、一人時間も大切にしたい</div>
+    </div>
+
+    <div class="err" id="tb-heart-err">答えを選んでください</div>
+    <button class="btn" onclick="submitTbHeart()">結果を見る 🌸</button>
+  </div></div>
+</div>
+
+<div class="page" id="pg-result">
+  <div class="frame"><div class="inner">
+    <div class="hd">
+      <div class="badge">🌸 あなたの花タイプは…</div>
+      <img id="res-img" class="flower-img" src="" alt="">
+      <div class="flower-name" id="res-name"></div>
+    </div>
+
+    <div class="card" id="res-body"></div>
+    <button class="btn" onclick="goTo('pg-next')">結果を送って詳しく相談する 💌</button>
+  </div></div>
+</div>
+
+<div class="page" id="pg-next">
+  <div class="frame"><div class="inner">
+    <div class="hd">
+      <div class="badge">💌 診断後の相談方法</div>
+      <div class="ttl">以下の4点を<br>琥珀花先生へ送信しよう</div>
+    </div>
+
+    <div class="chat-example">
+      <div class="send-guide">
+        <div class="send-guide-title">🌸 お試し一言鑑定<br>(開封無料)の受け取り方</div>
+
+        <div class="send-guide-list">
+          <div><strong>① 花タイプギフト</strong><br><span id="guide-gift-name">診断結果の花タイプギフト</span>を送信</div>
+          <div><strong>② 質問への回答</strong><br><span id="guide-question">診断結果ページに表示された質問</span>への回答を送信</div>
+          <div><strong>③ お相手との関係</strong><br>恋人・片思い・元恋人などを送信</div>
+          <div><strong>④ 相談内容（任意）</strong><br>詳しく見てほしい内容があれば送信</div>
+        </div>
+
+        <div style="margin-top:12px;padding:12px;background:linear-gradient(135deg,#8f95ff,#c881ff,#ff89bf);border-radius:12px;color:#fff;font-weight:bold;font-size:14px;">
+          ✨ 琥珀花先生から<br>
+          お試し一言鑑定が届きます
+        </div>
+
+        <button class="back-btn" onclick="goTo('pg-result')">質問をもう一度確認する</button>
+      </div>
+
+      <div class="chat-title">チャット送信例</div>
+
+      <div class="chat-screen">
+        <div class="chat-gift">
+          <img id="gift-img" src="" alt="花タイプ診断ギフト">
+        </div>
+
+        <div class="chat-time">19:14</div>
+
+        <div class="chat-bubble" id="next-msg"></div>
+
+        <div class="chat-time">19:15</div>
+
+        <div class="chat-input">
+          <div style="font-size:24px;">🎁</div>
+          <div style="font-size:24px;">📷</div>
+          <div class="chat-input-text">相談内容を入力</div>
+          <div class="send-icon">➤</div>
+        </div>
+      </div>
+
+<p class="note">
+※①花タイプギフト ②質問への回答 ③お相手との関係 ④相談内容（任意）を送信してください。<br>
+※④相談内容は任意ですが、送っていただくとその後の本鑑定へ進みやすくなります。
+</p>
+
+      <a class="btn" href="https://app-clear.com/open?act=otherprofile-67ad661d3ea9cf282502199c">
+        琥珀花先生の鑑定を見る
+      </a>
+
+      <div class="prof">
+        <img src="https://wp.app-clear.com/wp-content/uploads/2025/06/67ad661d3ea9cf282502199c_profile_1747370124868.png" alt="琥珀花先生">
+        <div class="prof-name">🐯琥珀花🌸 想代弁タロット</div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<script>
+const questions = [
+  ['q1','恋をすると、好きな人のことをつい考える時間が多くなってしまう'],
+  ['q2','恋人とは、意見や不満があるたびに話し合う時間が欲しいと思う'],
+  ['q3','好きな人ができると、その人との時間をつい優先してしまう'],
+  ['q4','恋人とは、こまめに連絡を取り合えるほうが安心する'],
+  ['q5','会えるなら会いたいし、会わない時間が長すぎると少し不安になる'],
+  ['q6','恋人とは、一緒に過ごす時間が多いほうが嬉しい']
+];
+
+const ans = {};
+let starScore = {A:0,B:0,C:0};
+let heartScore = {A:0,B:0,C:0};
+let starResult = '';
+let heartResult = '';
+let needTbHeart = false;
+
+const FLOWERS = {
+AA:{
+img:'images/rose.png',
+gift:'images/gift_rose.png',
+name:'バラ',
+rows:[['タイプ','愛が深く、まっすぐで一度好きになると揺らぎにくいタイプ'],['魅力','深い愛情・一途さ・包容力']],
+q:'あの人はあなたからの愛の熱量をどう感じていると思いますか？'
+},
+
+AB:{
+img:'images/gerbera.png',
+gift:'images/gift_gerbera.png',
+name:'ガーベラ',
+rows:[['タイプ','まじめで前向き、相手のペースも大事にしたいタイプ'],['魅力','誠実・健気・前向きさ']],
+q:'あの人はあなたからの優しさをどう受け取っていると思いますか？'
+},
+
+AC:{
+img:'images/dahlia.png',
+gift:'images/gift_dahlia.png',
+name:'ダリア',
+rows:[['タイプ','愛は深いが距離感は大人。静かに深く愛するタイプ'],['魅力','芯の強さ・神秘性・深い絆を作る力']],
+q:'あの人にあなたの気持ちはちゃんと伝わっていると思いますか？'
+},
+
+BA:{
+img:'images/lavender.png',
+gift:'images/gift_lavender.png',
+name:'ラベンダー',
+rows:[['タイプ','穏やかで優しく、恋人の心に寄り添う癒しタイプ'],['魅力','癒し・柔らかさ・安定感']],
+q:'あの人があなたに物足りないと思っていることは何だと思いますか？'
+},
+
+BB:{
+img:'images/cosmos.png',
+gift:'images/gift_cosmos.png',
+name:'コスモス',
+rows:[['タイプ','バランス感覚が良く、自然体で恋を育てるタイプ'],['魅力','調和・優しさ・自然体']],
+q:'今あなたとの関係において、あの人の満足度はどれくらいだと思いますか？'
+},
+
+BC:{
+img:'images/azami.png',
+gift:'images/gift_azami.png',
+name:'アザミ',
+rows:[['タイプ','本当は優しく愛が深いのに、自己防衛しながら恋をするタイプ'],['魅力','奥ゆかしさ・慎重な優しさ・唯一無二']],
+q:'あの人があなたに感じている心の距離感はどれくらいだと思いますか？'
+},
+
+CA:{
+img:'images/sunflower.png',
+gift:'images/gift_sunflower.png',
+name:'ひまわり',
+rows:[['タイプ','明るくて素直。恋にポジティブでスピード感があるタイプ'],['魅力','明るさ・行動力・素直さ']],
+q:'あの人はあなたの素直なところをどう受け取っていると思いますか？'
+},
+
+CB:{
+img:'images/tulip.png',
+gift:'images/gift_tulip.png',
+name:'チューリップ',
+rows:[['タイプ','親しみやすく、恋にも自然体で向き合うタイプ'],['魅力','可愛げ・素直さ・柔らかい明るさ']],
+q:'あの人にはあなたの本気度がどれくらい伝わっていると思いますか？'
+},
+
+CC:{
+img:'images/sakura.png',
+gift:'images/gift_sakura.png',
+name:'さくら',
+rows:[['タイプ','繊細で、自分の世界を大切にしながら自由に恋するタイプ'],['魅力','可憐・独自性・ほどよい距離の美しさ']],
+q:'あの人はどれくらいあなたのことを理解していると思いますか？'
+}
+};
+
+
+const wrap = document.getElementById('questions');
+questions.forEach((q,i)=>{
+  wrap.innerHTML += `
+    <div class="q-block">
+      <div class="q-num">Q${i+1}</div>
+      <div class="q-text">「${q[1]}」</div>
+      <div class="opt" onclick="pick(this,'${q[0]}','A')"><div class="dot"></div>A：はい</div>
+      <div class="opt" onclick="pick(this,'${q[0]}','B')"><div class="dot"></div>B：どっちともいえない</div>
+      <div class="opt" onclick="pick(this,'${q[0]}','C')"><div class="dot"></div>C：いいえ</div>
+    </div>
+  `;
+});
+
+function goTo(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function pick(el,q,val){
+  document.querySelectorAll(`.opt[onclick*="'${q}'"]`).forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  ans[q]=val;
+}
+
+function maxKey(score){
+  const max=Math.max(score.A,score.B,score.C);
+  const tied=['A','B','C'].filter(k=>score[k]===max);
+  return tied.length===1?tied[0]:null;
+}
+
+function submitQuiz(){
+  if(questions.some(q=>!ans[q[0]])){
+    document.getElementById('quiz-err').style.display='block';
+    return;
+  }
+
+  starScore={A:0,B:0,C:0};
+  heartScore={A:0,B:0,C:0};
+
+  ['q1','q2','q3'].forEach(q=>starScore[ans[q]]++);
+  ['q4','q5','q6'].forEach(q=>heartScore[ans[q]]++);
+
+  const sr=maxKey(starScore);
+  const hr=maxKey(heartScore);
+
+  if(!sr){
+    needTbHeart=!hr;
+    goTo('pg-tb-star');
+  }else{
+    starResult=sr;
+    if(!hr){
+      needTbHeart=true;
+      goTo('pg-tb-heart');
+    }else{
+      heartResult=hr;
+      showResult();
+    }
+  }
+}
+
+function submitTbStar(){
+  if(!ans.tb_star){
+    document.getElementById('tb-star-err').style.display='block';
+    return;
+  }
+  const tmp={...starScore};
+  tmp[ans.tb_star]++;
+  starResult=maxKey(tmp)||ans.tb_star;
+
+  if(needTbHeart){
+    goTo('pg-tb-heart');
+  }else{
+    heartResult=maxKey(heartScore);
+    showResult();
+  }
+}
+
+function submitTbHeart(){
+  if(!ans.tb_heart){
+    document.getElementById('tb-heart-err').style.display='block';
+    return;
+  }
+  const tmp={...heartScore};
+  tmp[ans.tb_heart]++;
+  heartResult=maxKey(tmp)||ans.tb_heart;
+  showResult();
+}
+
+function showResult(){
+  const f = FLOWERS[starResult + heartResult];
+
+  document.getElementById('res-img').src = f.img;
+  document.getElementById('res-name').textContent = f.name;
+
+  let html = '<table class="rtable">';
+  f.rows.forEach(([l,v])=>{
+    html += `<tr><td>${l}</td><td>${v}</td></tr>`;
+  });
+  html += `</table><div class="q-to-you"><strong>${f.name}タイプのあなたに質問</strong>${f.q}</div>`;
+
+  document.getElementById('res-body').innerHTML = html;
+  document.getElementById('gift-img').src = f.gift;
+  document.getElementById('guide-gift-name').textContent = f.name + 'タイプギフト';
+  document.getElementById('guide-question').textContent = f.q;
+
+document.getElementById('next-msg').innerHTML =
+  `${f.name}タイプギフトを送信しました<br><br>
+   質問への回答：〇〇です！<br>
+   相手は恋人です！<br>
+   相談内容：彼の気持ちを知りたいです<br>
+   ※相談内容は任意です`;
+
+  goTo('pg-result');
+}
+</script>
+
+</body>
+</html>
